@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="myCSS.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script type="text/javascript" src="scripts.js"></script>
+		<title>Insert title here</title>
+	</head>
+	<body>
+		<form method="POST">
+			<div class="form-group">
+			    <label>First Name:</label>
+			    <input type="text" class="form-control" id="fname">
+			</div>
+			<div class="form-group">
+			    <label>Last Name:</label>
+			    <input type="text" class="form-control" id="lname">
+			</div>
+			<div class="form-group">
+			    <label>Height:</label>
+			    <input type="text" class="form-control" id="height">
+			</div>
+			<div class="form-group">
+			    <label>Age:</label>
+			    <input type="text" class="form-control" id="age">
+			</div>
+			<div class="form-group">
+			    <label>Team Name:</label>
+			    <input type="text" class="form-control" id="tname">
+			</div>
+			<div class="form-group">
+			    <label>Jersey Number:</label>
+			    <input type="text" class="form-control" id="jnum">
+			</div>
+			<button type="submit" class="btn btn-primary">Add Player</button>
+		</form>
+		<div class="table-div">
+			<table id="playersTable" class="table table-hover">
+				<tr>
+					<th>ID</th>
+					<th>First Name</th>
+					<th>Last Name</th>
+					<th>Height(in cm)</th>
+					<th>Age</th>
+					<th>Team Name</th>
+					<th>Jersey No.</th>
+				</tr>
+			</table>
+		</div>
+		<div id="loader-div"></div>
+		<div id="errMsg-div"></div>
+	</body>	
+</html>
