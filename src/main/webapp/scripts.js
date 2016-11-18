@@ -73,7 +73,9 @@ function createPlayer() {
 			jerseyNumber: $('#jnum').val()
 		}),
 		success: function(newPlayer) {
-			appendPlayerToTable(newPlayer);
+			if(endOfPlayersTableReached) {
+				appendPlayerToTable(newPlayer);
+			}
 		},
 		error: function() {
 			alert("Such player already exists!");
