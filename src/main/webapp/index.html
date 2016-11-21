@@ -2,51 +2,82 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="myCSS.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="scripts.js"></script>
 		<title>Insert title here</title>
 	</head>
 	<body>
 		<form method="POST">
-			<div class="form-group">
-			    <label>First Name:</label>
-			    <input type="text" class="form-control" id="fname">
+			<div class="form-inline">
+				<div class="form-group">
+				    <label>First Name:</label><br>
+				    <input type="text" class="form-control" id="firstNameInput">
+				</div>
+				<div class="form-group">
+				    <label>Last Name:</label><br>
+				    <input type="text" class="form-control" id="lastNameInput">
+				</div>
 			</div>
-			<div class="form-group">
-			    <label>Last Name:</label>
-			    <input type="text" class="form-control" id="lname">
+			<div class="form-inline">
+				<div class="form-group">
+				    <label>Height:</label><br>
+				    <input type="text" class="form-control" id="heightInput">
+				</div>
+				<div class="form-group">
+				    <label>Age:</label><br>
+				    <input type="text" class="form-control" id="ageInput">
+				</div>
 			</div>
-			<div class="form-group">
-			    <label>Height:</label>
-			    <input type="text" class="form-control" id="height">
+			<div class="form-inline">
+				<div class="form-group">
+				    <label>Team Name:</label><br>
+				    <input type="text" class="form-control" id="teamNameInput">
+				</div>
+				<div class="form-group">
+				    <label>Jersey Number:</label><br>
+				    <input type="text" class="form-control" id="jerseyNumberInput">
+				</div>
 			</div>
-			<div class="form-group">
-			    <label>Age:</label>
-			    <input type="text" class="form-control" id="age">
-			</div>
-			<div class="form-group">
-			    <label>Team Name:</label>
-			    <input type="text" class="form-control" id="tname">
-			</div>
-			<div class="form-group">
-			    <label>Jersey Number:</label>
-			    <input type="text" class="form-control" id="jnum">
-			</div>
-			<button type="submit" class="btn btn-primary">Add Player</button>
+			<button type="submit" class="btn btn-primary" id="addButton" >Add Player</button>
 		</form>
-		<div class="table-div">
+		<div class="form-inline">
+			<select id="teamNameFilter">
+				<option id="resetOption">None</option>
+	        	<option>Boston Celtics</option>
+	        	<option>Brooklyn Nets</option>
+	        	<option>Chicago Bulls</option>
+	        	<option>Cleveland Cavaliers</option>
+	        	<option>Milwaukee Bucks</option>
+	        	<option>Miami Heat</option>
+	        	<option>Memphis Grizzlies</option>
+	        	<option>San Antonio Spurs</option>
+	        	<option>Denver Nuggets</option>
+	        	<option>Oklahoma City Thunder</option>
+	        	<option>Utah Jazz</option>
+	        	<option>Golden State Warriors</option>
+	        	<option>Los Angeles Clippers</option>
+	        	<option>Los Angeles Lakers</option>
+	        	<option>Sacramento Kings</option>
+			</select>
+		</div>
+		<div id="table-div">
 			<table id="playersTable" class="table table-hover">
-				<tr>
-					<th>ID</th>
-					<th>First Name</th>
-					<th>Last Name</th>
-					<th>Height(in cm)</th>
-					<th>Age</th>
-					<th>Team Name</th>
-					<th>Jersey No.</th>
-				</tr>
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>First Name</th>
+						<th>Last Name</th>
+						<th>Height(in cm)</th>
+						<th>Age</th>
+						<th>Team Name</th>
+						<th>Jersey No.</th>
+					</tr>
+				</thead>
+				<tbody id="playersTableBody">
+				</tbody>
 			</table>
 		</div>
 		<div id="loader-div"></div>

@@ -1,5 +1,7 @@
 package bg.elsys.ip.rest;
 
+import java.util.ArrayList;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
@@ -17,32 +19,48 @@ public class BasketballPlayerResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.TEXT_PLAIN)
 	public Response getPlayers(@DefaultValue("0") @QueryParam("page") int page,
-					@DefaultValue("0") @QueryParam("dataPerPage") int playersPerPage) {
+					@DefaultValue("0") @QueryParam("dataPerPage") int playersPerPage,
+					@DefaultValue("") @QueryParam("height") String height,
+					@DefaultValue("") @QueryParam("age") String age,
+					@DefaultValue("") @QueryParam("tName") String teamName,
+					@DefaultValue("") @QueryParam("jNum") String jerseyNumber) {
+		ArrayList<BasketballPlayer> players = new ArrayList<>(BasketballPlayersManager
+																.getPlayersList());
+		if(!"".equalsIgnoreCase(height)) {
+			
+		}
+		if(!"".equalsIgnoreCase(age)) {
+			
+		}
+		if(!"".equalsIgnoreCase(teamName) && !"None".equalsIgnoreCase(teamName)) {
+			players.removeIf((player) -> !player
+												.getTeamName()
+												.equalsIgnoreCase(teamName));
+		}
+		if(!"".equalsIgnoreCase(jerseyNumber)) {
+			
+		}
 		if(page > 0  && playersPerPage > 0) {
-			if(page*playersPerPage <= BasketballPlayersManager
-															.getPlayersList()
-															.size()) {
-				return Response.ok(BasketballPlayersManager
-												.getPlayersList()
-												.subList((page-1)*playersPerPage,
-														(page++)*playersPerPage)).build();
+			if(page*playersPerPage <= players.size()) {
+				return Response.ok(players.subList((page-1)*playersPerPage,
+													(page++)*playersPerPage)).build();
 			}
-			else if((page-1)*playersPerPage < BasketballPlayersManager
-																.getPlayersList()
-																.size()) {
-				return Response.ok(BasketballPlayersManager
-										.getPlayersList()
-										.subList((page-1)*playersPerPage,
-												BasketballPlayersManager
-																.getPlayersList()
-																.size())).build();
+			else if((page-1)*playersPerPage < players.size()) {
+				return Response.ok(players.subList((page-1)*playersPerPage,
+													players.size())).build();
 			}
 			else { //Send a page-not-found status as there are no more pages to load
-				return Response.status(Response.Status.NOT_FOUND).build();
+				return Response
+								.status(Response.Status.NOT_FOUND)
+								.entity("No more players to load.")
+								.build();
 			}
 		}
 		else { //If no query params are passed, thus their default value being used
-			return Response.status(Response.Status.BAD_REQUEST).build();
+			return Response
+							.status(Response.Status.BAD_REQUEST)
+							.entity("Bad request!")
+							.build();
 		}
 	}
 	
@@ -51,9 +69,11 @@ public class BasketballPlayerResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createPlayer(BasketballPlayer player) {
 		if(BasketballPlayersManager.playerExists(player)) {
-			return Response.status(Response.Status.NOT_ACCEPTABLE).build();
+			return Response
+							.status(Response.Status.NOT_ACCEPTABLE)
+							.entity("Such player already exists!")
+							.build();
 		}
 		return Response.ok(BasketballPlayersManager.addNewPlayer(player)).build();
 	}
-
 }

@@ -42,23 +42,25 @@ public class BasketballPlayersManager {
 								"Lebron", "Dwayne", "Derrick", "Dirk", "Chris"};
 		String[] lastNames = {"Petrov", "Bosh", "Bryant", "Jordan", "James",
 								"O'Neill", "Rose", "Nowitzki", "Wade", "Jackson"};
-		int[] heights = {180, 190, 185, 200, 205, 195, 210, 199, 182, 193};
-		int[] ages = {18, 19, 20, 25, 30, 33, 28, 35, 22, 31};
+		int[] heights = {180, 190, 185, 200, 205, 195, 210, 199, 182, 193, 187, 202};
+		int[] ages = {18, 19, 20, 25, 30, 33, 28, 35, 22, 31, 38, 27};
 		String[] teamNames = {"Chicago Bulls", "Golden State Warriors", 
-								"Cleveland Cavaliers", "LA Lakers", 
-								"LA Clippers", "Miami Heat",
+								"Cleveland Cavaliers", "Los Angeles Lakers", 
+								"Los Angeles Clippers", "Miami Heat",
 								"Boston Celtics", "Brooklyn Nets",
-								"Memphis Grizzlies", "Milwaukee Bucks"};
-		int[] jerseyNumbers = {1, 10, 15, 20, 23, 12, 99, 80, 4, 7};
+								"Memphis Grizzlies", "Milwaukee Bucks",
+								"Denver Nuggets", "Utah Jazz",
+								"Sacramento Kings", "Oklahoma City Thunder"};
+		int[] jerseyNumbers = {1, 10, 15, 20, 23, 12, 99, 80, 4, 7, 5, 24};
 		
 		Random rand = new Random();
 		for(int i = 0; i < 30; i++) {
-			list.add(new BasketballPlayer(	firstNames[rand.nextInt(10)],
-											lastNames[rand.nextInt(10)],
-											heights[rand.nextInt(10)],
-											ages[rand.nextInt(10)],
-											teamNames[rand.nextInt(10)],
-											jerseyNumbers[rand.nextInt(10)]));
+			list.add(new BasketballPlayer(	firstNames[rand.nextInt(firstNames.length)],
+											lastNames[rand.nextInt(lastNames.length)],
+											heights[rand.nextInt(heights.length)],
+											ages[rand.nextInt(ages.length)],
+											teamNames[rand.nextInt(teamNames.length)],
+											jerseyNumbers[rand.nextInt(jerseyNumbers.length)]));
 		}
 		return list;
  	}
