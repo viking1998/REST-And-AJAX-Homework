@@ -23,8 +23,8 @@ tr, th {
 	left: 225px;
 }
 
-#teamNameFilter {
-	margin: 0px 0px 5px 830px; 
+#heightFilter, #ageFilter, #jerseyNumberFilter {
+	width: 65px;
 }
 
 form {

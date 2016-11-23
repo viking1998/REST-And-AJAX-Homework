@@ -29,7 +29,7 @@ function clearFormFields() {
 	$('#jerseyNumberInput').val("");
 }
 
-function loadNextPlayers() {
+function loadNextPlayersWithFilters() {
 	$.ajax({
 		url: "http://localhost:8080/rest/api/players",
 		type: "GET",
@@ -38,10 +38,10 @@ function loadNextPlayers() {
 		data: {
 			page: pageToLoad,
 			dataPerPage: playersPerPage,
-			age: "",
-			height: "",
+			age: $('#ageFilter').val(),
+			height: $('#heightFilter').val(),
 			tName: "",
-			jNum: ""
+			jNum: $('#jerseyNumberFilter').val()
 		},
 		success: function(players) {
 			pageToLoad++;
@@ -94,29 +94,6 @@ function createPlayer() {
 	});
 }
 
-function sendFilterRequest(filterOption) {
-	$.ajax({
-		url: "http://localhost:8080/rest/api/players",
-		type: "GET",
-		dataType: "json",
-		contentType: "text/plain",
-		data: {
-			page: pageToLoad,
-			dataPerPage: playersPerPage,
-			age: "",
-			height: "",
-			tName: $('#teamNameFilter').val(),
-			jNum: "" 
-		},
-		success: function(players) {
-			pageToLoad++;
-			$.each(players, function(index) {
-				appendPlayerToTable(players[index]);
-			});
-		}
-	});
-}
-
 function resetTable() {
 	$('#playersTableBody tr').remove();
 	pageToLoad = 1;
@@ -125,16 +102,31 @@ function resetTable() {
 	$('#errMsg-div p').remove();
 }
 
+function setupFilters() {
+	$('#heightFilter option#heightResetOption').prop('selected', 'selected');
+	$('#ageFilter option#ageResetOption').prop('selected', 'selected');
+	$('#jerseyNumberFilter option#jerseyNumberResetOption').prop('selected', 'selected');
+	for(var i=180; i <= 220; i++) {
+		$('#heightFilter').append('<option>' + i + '</option>');
+	}
+	for(var i=18; i <= 40; i++) {
+		$('#ageFilter').append('<option>' + i + '</option>');
+	}
+	for(var i=1; i < 100; i++) {
+		$('#jerseyNumberFilter').append('<option>' + i + '</option>');
+	}
+}
+
 function showLoadingImage() {
 	$('#loader-div').append('<img id="loadingGif" src="ajax-loader.gif" alt="Loading...">');
 }
 
 $(document).ready(function() {
-	$('#teamNameFilter option#resetOption').prop('selected', 'selected');
+	setupFilters();
 	pageToLoad = 1;
 	endOfPlayersTableReached = false;
 	$('#playersTableBody tr').remove();
-	loadNextPlayers();
+	loadNextPlayersWithFilters();
 	$('form').submit(function(e) {
 		e.preventDefault();
 		if(!$('#firstNameInput').val() || !$('#lastNameInput').val() 
@@ -146,17 +138,24 @@ $(document).ready(function() {
 			createPlayer();
 		}
 	});
-	$('#teamNameFilter').change(function() {
+	$('#ageFilter').change(function() {
 		resetTable();
-		sendFilterRequest();
+		loadNextPlayersWithFilters();
+	});
+	$('#heightFilter').change(function() {
+		resetTable();
+		loadNextPlayersWithFilters();
+	});
+	$('#jerseyNumberFilter').change(function() {
+		resetTable();
+		loadNextPlayersWithFilters();
 	});
 	$(window).scroll(function() {
-		console.log(endOfPlayersTableReached + " " + previousAjaxRequestHasFinished)
 		if($(window).scrollTop() + $(window).height() >= $('body').height()
 			&& !endOfPlayersTableReached && previousAjaxRequestHasFinished) {
 			previousAjaxRequestHasFinished = false;
 			showLoadingImage();
-			setTimeout(loadNextPlayers, 1000);
+			setTimeout(loadNextPlayersWithFilters, 1000);
 		}
 	});
 });

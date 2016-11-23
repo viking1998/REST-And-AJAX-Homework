@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="myCSS.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script src="https://raw.githubusercontent.com/devbridge/jQuery-Autocomplete/master/src/jquery.autocomplete.js"></script>
 		<script type="text/javascript" src="scripts.js"></script>
 		<title>Insert title here</title>
 	</head>
@@ -43,26 +44,6 @@
 			</div>
 			<button type="submit" class="btn btn-primary" id="addButton" >Add Player</button>
 		</form>
-		<div class="form-inline">
-			<select id="teamNameFilter">
-				<option id="resetOption">None</option>
-	        	<option>Boston Celtics</option>
-	        	<option>Brooklyn Nets</option>
-	        	<option>Chicago Bulls</option>
-	        	<option>Cleveland Cavaliers</option>
-	        	<option>Milwaukee Bucks</option>
-	        	<option>Miami Heat</option>
-	        	<option>Memphis Grizzlies</option>
-	        	<option>San Antonio Spurs</option>
-	        	<option>Denver Nuggets</option>
-	        	<option>Oklahoma City Thunder</option>
-	        	<option>Utah Jazz</option>
-	        	<option>Golden State Warriors</option>
-	        	<option>Los Angeles Clippers</option>
-	        	<option>Los Angeles Lakers</option>
-	        	<option>Sacramento Kings</option>
-			</select>
-		</div>
 		<div id="table-div">
 			<table id="playersTable" class="table table-hover">
 				<thead>
@@ -70,10 +51,28 @@
 						<th>ID</th>
 						<th>First Name</th>
 						<th>Last Name</th>
-						<th>Height(in cm)</th>
-						<th>Age</th>
+						<th>Height(in cm)<br>
+							<span>
+								<select id="heightFilter">
+									<option id="heightResetOption">None</option>
+								</select>
+							</span>
+						</th>
+						<th>Age<br>
+							<div>
+								<select id="ageFilter">
+									<option id="ageResetOption">None</option>
+								</select>
+							</div>
+						</th>
 						<th>Team Name</th>
-						<th>Jersey No.</th>
+						<th>Jersey No.<br>
+							<span>
+								<select id="jerseyNumberFilter">
+									<option id="jerseyNumberResetOption">None</option>
+								</select>
+							</span>
+						</th>
 					</tr>
 				</thead>
 				<tbody id="playersTableBody">

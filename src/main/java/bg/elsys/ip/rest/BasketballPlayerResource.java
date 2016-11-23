@@ -26,19 +26,17 @@ public class BasketballPlayerResource {
 					@DefaultValue("") @QueryParam("jNum") String jerseyNumber) {
 		ArrayList<BasketballPlayer> players = new ArrayList<>(BasketballPlayersManager
 																.getPlayersList());
-		if(!"".equalsIgnoreCase(height)) {
+		if(!"".equalsIgnoreCase(height) && !"None".equalsIgnoreCase(height)) {
+			players.removeIf(player -> player.getHeight() != Integer.parseInt(height));
+		}
+		if(!"".equalsIgnoreCase(age) && !"None".equalsIgnoreCase(age)) {
+			players.removeIf(player -> player.getAge() != Integer.parseInt(age));
+		}
+		if(!"".equalsIgnoreCase(teamName)) {
 			
 		}
-		if(!"".equalsIgnoreCase(age)) {
-			
-		}
-		if(!"".equalsIgnoreCase(teamName) && !"None".equalsIgnoreCase(teamName)) {
-			players.removeIf((player) -> !player
-												.getTeamName()
-												.equalsIgnoreCase(teamName));
-		}
-		if(!"".equalsIgnoreCase(jerseyNumber)) {
-			
+		if(!"".equalsIgnoreCase(jerseyNumber) && !"None".equalsIgnoreCase(jerseyNumber)) {
+			players.removeIf(player -> player.getJerseyNumber() != Integer.parseInt(jerseyNumber));
 		}
 		if(page > 0  && playersPerPage > 0) {
 			if(page*playersPerPage <= players.size()) {
