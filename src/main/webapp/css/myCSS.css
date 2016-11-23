@@ -1,0 +1,42 @@
+@CHARSET "UTF-8";
+
+tr, th {
+	text-align: center;
+}
+
+#table-div {
+	width: 80%;
+	margin: auto;
+}
+
+#firstNameInput, #lastNameInput, #heightInput, #ageInput, #teamNameInput, #jerseyNumberInput {
+	width: 260px;
+}
+
+#firstNameInput, #heightInput, #teamNameInput {
+	margin-right: 10px;
+}
+
+#addButton {
+	position: relative;
+	top: 10px;
+	left: 225px;
+}
+
+#heightFilter, #ageFilter, #jerseyNumberFilter {
+	width: 65px;
+}
+
+form {
+	width: 40%;
+	margin: 20px auto;
+}
+
+#errMsg-div {
+	text-align: center;
+}
+
+#loadingGif {
+	position: absolute;
+	left: 50%;
+}

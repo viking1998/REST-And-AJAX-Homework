@@ -33,7 +33,7 @@ public class BasketballPlayerResource {
 			players.removeIf(player -> player.getAge() != Integer.parseInt(age));
 		}
 		if(!"".equalsIgnoreCase(teamName)) {
-			
+			players.removeIf(player -> !player.getTeamName().equalsIgnoreCase(teamName));
 		}
 		if(!"".equalsIgnoreCase(jerseyNumber) && !"None".equalsIgnoreCase(jerseyNumber)) {
 			players.removeIf(player -> player.getJerseyNumber() != Integer.parseInt(jerseyNumber));
@@ -73,5 +73,19 @@ public class BasketballPlayerResource {
 							.build();
 		}
 		return Response.ok(BasketballPlayersManager.addNewPlayer(player)).build();
+	}
+	
+	@GET @Path("/filterTeamNames")
+	@Consumes(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<String> filterTeamNames(@DefaultValue("") @QueryParam("query") String query) {
+		ArrayList<String> matchingTeamNames = new ArrayList<>();
+		BasketballPlayersManager.getPlayersList().forEach(player -> {
+			if(player.getTeamName().toLowerCase().contains(query.toLowerCase())
+				&& !matchingTeamNames.contains(player.getTeamName())) {
+				matchingTeamNames.add(player.getTeamName());
+			}
+		});
+		return matchingTeamNames;
 	}
 }
