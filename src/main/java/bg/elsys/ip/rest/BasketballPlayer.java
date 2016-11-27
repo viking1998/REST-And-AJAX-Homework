@@ -1,12 +1,40 @@
 package bg.elsys.ip.rest;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@ApiModel
 public class BasketballPlayer {
 	int id;
+	
+	@ApiModelProperty(required = true,
+						value = "This will show the first name of the basketball player",
+						example = "John")
 	String firstName;
+	
+	@ApiModelProperty(required = true,
+						value = "This will show the last name of the player",
+						example = "Bryant")
 	String lastName;
+	
+	@ApiModelProperty(required = true,
+						value = "This will show the height of the player",
+						example = "200")
 	int height;
+	
+	@ApiModelProperty(required = true,
+						value = "This will show the age of the player",
+						example = "20")
 	int age;
+	
+	@ApiModelProperty(required = true,
+						value = "This will show the team name of the player",
+						example = "Chicago Bulls")
 	String teamName;
+	
+	@ApiModelProperty(required = true,
+						value = "This will show the jersey number of the player",
+						example = "5")
 	int jerseyNumber;
 
 	public BasketballPlayer() {

@@ -1,6 +1,8 @@
 package bg.elsys.ip.rest;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class BasketballPlayersManager {
@@ -8,8 +10,8 @@ public class BasketballPlayersManager {
 	private static int nextId = 1;
 	private static ArrayList<BasketballPlayer> playerList = new ArrayList<>(generateTestData());
 	
-	public static ArrayList<BasketballPlayer> getPlayersList() {
-		return playerList;
+	public static List<BasketballPlayer> getPlayersList() {
+		return Collections.unmodifiableList(playerList);
 	}
 	
 	public static int getNextID() {

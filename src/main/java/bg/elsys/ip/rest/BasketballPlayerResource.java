@@ -12,12 +12,18 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @Path("/players")
+@Api("players")
 public class BasketballPlayerResource {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.TEXT_PLAIN)
+	@ApiOperation(value = "Get a list of basketball players",
+					response = BasketballPlayer.class, responseContainer = "List")
 	public Response getPlayers(@DefaultValue("0") @QueryParam("page") int page,
 					@DefaultValue("0") @QueryParam("dataPerPage") int playersPerPage,
 					@DefaultValue("") @QueryParam("height") String height,
@@ -65,6 +71,8 @@ public class BasketballPlayerResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Create a new basketball player",
+					response = BasketballPlayer.class)
 	public Response createPlayer(BasketballPlayer player) {
 		if(BasketballPlayersManager.playerExists(player)) {
 			return Response
@@ -78,6 +86,8 @@ public class BasketballPlayerResource {
 	@GET @Path("/filterTeamNames")
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.APPLICATION_JSON)
+	@ApiOperation(value = "Get a list of filtered team names",
+	response = String.class, responseContainer = "List")
 	public ArrayList<String> filterTeamNames(@DefaultValue("") @QueryParam("query") String query) {
 		ArrayList<String> matchingTeamNames = new ArrayList<>();
 		BasketballPlayersManager.getPlayersList().forEach(player -> {
